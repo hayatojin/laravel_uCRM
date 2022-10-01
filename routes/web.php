@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\InertiaTestController;
+use App\Http\Controllers\ItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,10 @@ use App\Http\Controllers\InertiaTestController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// Item関連リソースコントローラー
+Route::resource('items', ItemController::class)
+->middleware(['auth', 'verified']); // ['auth', 'verified']は、laravelBreezeの認証で使うやつ（/dashboardのログインルーティングを参考）
 
 // Inertiaの動きテスト
 Route::get('/inertia-test', function () {
