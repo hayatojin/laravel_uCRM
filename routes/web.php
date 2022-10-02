@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\InertiaTestController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,10 @@ use App\Http\Controllers\ItemController;
 // Item関連リソースコントローラー
 Route::resource('items', ItemController::class)
 ->middleware(['auth', 'verified']); // ['auth', 'verified']は、laravelBreezeの認証で使うやつ（/dashboardのログインルーティングを参考）
+
+// Customer関連リソースコントローラー
+Route::resource('customers', CustomerController::class)
+->middleware(['auth', 'verified']);
 
 // Inertiaの動きテスト
 Route::get('/inertia-test', function () {
