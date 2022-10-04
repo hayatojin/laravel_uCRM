@@ -12,6 +12,7 @@ class CustomerController extends Controller
 {
     public function index(Request $request)
     {
+        // 検索キーワードが入っていたら、その条件を元にselectで取得する
         $customers = Customer::searchCustomers($request->search)
         ->select('id', 'name', 'kana', 'tel')->paginate(50);
 

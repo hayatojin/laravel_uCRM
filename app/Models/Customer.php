@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Purchase;
 
 class Customer extends Model
 {
@@ -21,6 +22,7 @@ class Customer extends Model
         'memo'
     ];
 
+    // 検索機能のスコープ
     public function scopeSearchCustomers($query, $input = null)
     {
         if(!empty($input)){
@@ -29,5 +31,11 @@ class Customer extends Model
                 return $query->where('kana', 'like', $input . '%')->orWhere('tel', 'like', $input . '%');
             }
         }
+    }
+
+    // 購入情報テーブルへのリレーション（1対多）
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class);
     }
 }
