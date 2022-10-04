@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         // eachによって、Purchase100件分のダミーデータを1件ずつ処理する
         // use文によって、関数の外側の変数も、メソッド内で使うことができる
         // attachによって、中間テーブルに情報を登録できる
-        Purchase::factory(500)->create()
+        Purchase::factory(10000)->create()
         ->each(function(Purchase $purchase) use ($items) {
             $purchase->items()->attach(
                 $items->random(rand(1, 3))->pluck('id')->toArray(), // 1～3個のitemをpurchaseにランダムに紐づけ
