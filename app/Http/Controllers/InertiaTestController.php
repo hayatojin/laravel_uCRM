@@ -25,7 +25,7 @@ class InertiaTestController extends Controller
         return Inertia::render('Inertia/show', 
         [
             'id' => $id,
-            'blog' => InertiaTest::findOrFail($id)
+            'blog' => InertiaTest::findOrFail($id) // DBの中から1件だけレコードを取得する（1件を特定できるので、showやdeleteメソッドでよく使われそう）
         ]);
     }
 
